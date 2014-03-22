@@ -6,7 +6,7 @@ A simple Perl script to read in a human-typed OSRIC character sheet, and export 
 Example character sheet
 -----------------------
 
-'''
+```
 --- PERSONAL ---
 Name: kirby
 Class: Magic User
@@ -31,6 +31,6 @@ Cha: 2
 
 --- WEALTH ---
 Gold: 40
-'''
+```
 
 The script is a lot more leniant, and so you don't need things like capitalization or whitespace or the colon or the headers, but doing so keeps it human-readable :)

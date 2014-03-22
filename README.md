@@ -3,6 +3,16 @@ osric-character-sheet-to-json
 
 A simple Perl script to read in a human-typed OSRIC character sheet, and export the character info to JSON so the lovely [obot](https://github.com/dami0/obot) can read it.
 
+Usage
+-----
+
+Usage is simple enough. Just pass the path to the character sheet(s) and it'll give you a JSON .sheet file for each:
+
+```
+chmod +x character-sheet.pl
+./character-sheet.pl /path/to/sheet1 /path/to/sheet2
+```
+
 Example character sheet
 -----------------------
 

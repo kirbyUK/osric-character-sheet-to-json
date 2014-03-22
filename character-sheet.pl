@@ -2,7 +2,7 @@
 use strict;
 use JSON;
 
-foreach my $character_sheet(@ARGV)
+for my $character_sheet(@ARGV)
 {
 	unless(open my $file, '<', $character_sheet)
 	{
@@ -11,13 +11,15 @@ foreach my $character_sheet(@ARGV)
 	}
 	else
 	{
+		print "Reading '$character_sheet'...\n";
 		my $char = { };
-		foreach my $line(<$file>)
+		for my $line(<$file>)
 		{
 			if($line =~ /^
 						(Name|Class|Alignment|
 						 Race|XP|HP|AC|Lvl|
-						 Age|Height|Weight|Sex)
+						 Age|Height|Weight|Sex|
+						 Gold)
 						:?
 						\s*
 						(.*)$
@@ -30,6 +32,7 @@ foreach my $character_sheet(@ARGV)
 	}
 }
 
+#Writes the chracter hash to a JSON file:
 sub write_character_to_file
 {
 	my $char = shift;
@@ -42,5 +45,6 @@ sub write_character_to_file
 	else
 	{
 		print $file to_json($char, { pretty => 1 });
+		print "Written '$filename'\n";
 	}
 }

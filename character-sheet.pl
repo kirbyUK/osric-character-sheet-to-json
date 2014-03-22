@@ -2,6 +2,16 @@
 use strict;
 use JSON;
 
+#Everything that needs to be on the character sheet:
+my @stats = qw/
+			Name Class Alignment Race XP HP
+			AC Lvl Age Height Weight Sex Gold
+			/;
+
+#And in single string form, seperated by '|' for
+#the regex to use:
+my $stats = join "|", @stats;
+
 for my $character_sheet(@ARGV)
 {
 	unless(open my $file, '<', $character_sheet)
@@ -15,15 +25,8 @@ for my $character_sheet(@ARGV)
 		my $char = { };
 		for my $line(<$file>)
 		{
-			if($line =~ /^
-						(Name|Class|Alignment|
-						 Race|XP|HP|AC|Lvl|
-						 Age|Height|Weight|Sex|
-						 Gold)
-						:?
-						\s*
-						(.*)$
-						/ix) {
+			if($line =~ /^($stats):?\s*(.*)$/i)
+			{
 				my $attr = lc $1;
 				$$char{$attr} = $2;
 			}

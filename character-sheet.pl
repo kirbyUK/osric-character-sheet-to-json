@@ -4,10 +4,10 @@ use JSON;
 
 #Everything that needs to be on the character sheet:
 my @stats = qw/
-			Name Class Alignment Race 
-			XP HP AC Lvl 
-			Age Height Weight Sex 
-			Gold
+			name class alignment race 
+			xp hp ac lvl 
+			age height weight sex 
+			gold
 			/;
 
 #And in single string form, seperated by '|' for
@@ -33,8 +33,22 @@ for my $character_sheet(@ARGV)
 				$$char{$attr} = $2;
 			}
 		}
+		error_check($char);
 		write_character_to_file($char);
 	}
+}
+
+#Checks for any issues and warns the user:
+sub error_check
+{
+	my $char = shift;
+
+	#Checks for any missing stats:
+	my %similar;
+	$similar{$_}++ for(@stats);
+	$similar{$_}-- for(keys %$char);
+	my @missing = grep { $similar{$_} != 0 } keys %similar;
+	warn "\t(!) The following stats are missing: @missing\n" if(@missing);
 }
 
 #Writes the chracter hash to a JSON file:

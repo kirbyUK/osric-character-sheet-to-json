@@ -4,8 +4,10 @@ use JSON;
 
 #Everything that needs to be on the character sheet:
 my @stats = qw/
-			Name Class Alignment Race XP HP
-			AC Lvl Age Height Weight Sex Gold
+			Name Class Alignment Race 
+			XP HP AC Lvl 
+			Age Height Weight Sex 
+			Gold
 			/;
 
 #And in single string form, seperated by '|' for
